@@ -34,24 +34,53 @@ onMounted(fetchCharacters)
 
 <template>
   <div class="container mx-auto p-4">
-    <div class="flex py-5 mx-auto w-fit gap-5 mb-4">
-      <input v-model="name"
-             class="px-2 py-3 pl-8 rounded-md text-gray-300 focus:outline-0 bg-[#14284f] shadow-sky-900 border-sky-800 border-[1px] shadow-inner"
-             placeholder="Name" type="text" />
-      <select v-model="status" class="input">
-        <option value="">All</option>
-        <option value="alive">Alive</option>
-        <option value="dead">Dead</option>
-        <option value="unknown">Unknown</option>
-      </select>
-      <button class="btn" @click="applyFilters">Apply</button>
+    <div class="mx-auto w-fit">
+      <div class="flex justify-between items-center gap-5 mb-4">
+        <div class="flex space-x-2 justify-start items-center cursor-pointer w-fit h-fit">
+          <p class="text-4xl font-bold text-white  pt-2">
+            Рик и Морти
+          </p>
+        </div>
+        <div class="relative">
+          <input v-model="name"
+                 class="px-2 py-5 pl-8 w-[500px] rounded-md text-gray-300 focus:outline-0 bg-[#14284f] shadow-sky-900 border-sky-800 border-[1px] shadow-inner"
+                 placeholder="Name" type="text"
+          />
+        </div>
+        <select v-model="status"
+                class="px-8 py-5 rounded-md text-gray-300 focus:outline-0 bg-[#14284f] shadow-sky-900 border-sky-800 border-[1px] shadow-inner"
+        >
+          <option value="">All</option>
+          <option value="alive">Alive</option>
+          <option value="dead">Dead</option>
+          <option value="unknown">Unknown</option>
+        </select>
+        <button
+          class="px-8 py-5 rounded-md text-gray-300 focus:outline-0 bg-[#14284f] shadow-sky-900 border-sky-800 border-[1px] shadow-inner"
+          @click="applyFilters"
+        >
+          Apply
+        </button>
+      </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <CharacterCard v-for="character in characters" :key="character.id" :character="character" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mt-10">
+      <CharacterCard v-for="character in characters"
+                     :key="character.id"
+                     :character="character" />
     </div>
-    <div class="flex justify-between mt-4">
-      <button :disabled="page === 1" class="btn" @click="prevPage">Previous</button>
-      <button class="btn" @click="nextPage">Next</button>
+    <div class="flex justify-between my-10">
+      <button :disabled="page === 1"
+              class="px-8 py-5 rounded-md text-gray-300 focus:outline-0 bg-[#14284f] shadow-sky-900 border-sky-800 border-[1px] shadow-inner"
+              @click="prevPage"
+      >
+        Previous
+      </button>
+      <button
+        class="px-8 py-5 rounded-md text-gray-300 focus:outline-0 bg-[#14284f] shadow-sky-900 border-sky-800 border-[1px] shadow-inner"
+        @click="nextPage"
+      >
+        Next
+      </button>
     </div>
   </div>
 </template>
